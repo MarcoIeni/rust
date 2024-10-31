@@ -6,11 +6,15 @@ runners:
 
   - &job-linux-4c
     os: ubuntu-20.04
+    # Free some disk space to avoid running out of space during the build.
+    free_some_disk: true
     <<: *base-job
 
-  # Large runner used mainly for its bigger disk capacity
   - &job-linux-4c-largedisk
-    os: ubuntu-20.04-4core-16gb
+    os: ubuntu-20.04
+    # Free as much disk space as possible to avoid running out of space during the build.
+    # Only set this if `free_some_disk` is not enough because freeing disk takes time.
+    free_disk: true
     <<: *base-job
 
   - &job-linux-8c
